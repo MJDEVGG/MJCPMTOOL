@@ -40,7 +40,7 @@ _BANNER_ASCII = """
         █▀▄▀█ ░░█ █▀▀ █▀█ █▀▄▀█ ▀█▀ █▀█ █▀█ █
         █░▀░█ █▄█ █▄▄ █▀▀ █░▀░█ ░█░ █▄█ █▄█ █▄▄                                          
 ════════════════════════════════════════════════════
-       👑 MJCPMTOOL | Car Parking Multiplayer 1 & 2👑
+  👑 MJCPMTOOL | Car Parking Multiplayer 1 & 2👑
 ════════════════════════════════════════════════════
 """
 
@@ -57,7 +57,7 @@ def splash():
 def header():
     os.system('cls' if os.name == 'nt' else 'clear')
     print(Colorate.Horizontal(Colors.green_to_white, "=" * 60))
-    print(Colorate.Horizontal(Colors.red_to_yellow, "  𝗠𝗝 𝗖𝗣𝗠 𝗧𝗢𝗢𝗟  •  𝗖𝗔𝗥 𝗣𝗔𝗥𝗞𝗜𝗡𝗚 𝗠𝗨𝗟𝗧𝗜𝗣𝗔𝗬𝗘𝗥 𝟭 & 𝟮 "))
+    print(Colorate.Horizontal(Colors.red_to_yellow, "    𝗠𝗝 𝗖𝗣𝗠 𝗧𝗢𝗢𝗟  •  𝗖𝗔𝗥 𝗣𝗔𝗥𝗞𝗜𝗡𝗚 𝗠𝗨𝗟𝗧𝗜𝗣𝗔𝗬𝗘𝗥 𝟭 & 𝟮 "))
     print(Colorate.Horizontal(Colors.green_to_white, "=" * 60))
     print(f"{Fore.MAGENTA}< Logout your CPM account from game before using this tool! >{Style.RESET_ALL}")
     print(f"{Fore.GREEN}[+]{Style.RESET_ALL} Telegram: @MJ_GARAGE\n")
