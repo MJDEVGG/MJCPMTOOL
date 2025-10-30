@@ -36,10 +36,12 @@ def show_progress(message="Loading...", duration=1.2):
 
 # =========[ Banner (main.py style) ]=========
 _BANNER_ASCII = """
-══════════════════════════════════════
-║ █▀▄▀█ ░░█ █▀▀ █▀█ █▀▄▀█ ▀█▀ █▀█ █▀█ █   ║
-║ █░▀░█ █▄█ █▄▄ █▀▀ █░▀░█ ░█░ █▄█ █▄█ █▄▄║
-══════════════════════════════════════
+     __    __       __     ______     ______   __    __     ______   ______     ______     __        
+/\ "-./  \     /\ \   /\  ___\   /\  == \ /\ "-./  \   /\__  _\ /\  __ \   /\  __ \   /\ \       
+\ \ \-./\ \   _\_\ \  \ \ \____  \ \  _-/ \ \ \-./\ \  \/_/\ \/ \ \ \/\ \  \ \ \/\ \  \ \ \____  
+ \ \_\ \ \_\ /\_____\  \ \_____\  \ \_\    \ \_\ \ \_\    \ \_\  \ \_____\  \ \_____\  \ \_____\ 
+  \/_/  \/_/ \/_____/   \/_____/   \/_/     \/_/  \/_/     \/_/   \/_____/   \/_____/   \/_____/ 
+                                                                                                 
 """
 
 
@@ -72,13 +74,13 @@ CHAT_IDS = [int(chat_id) for chat_id in os.environ.get("CHAT_IDS", "7964340522,6
 GAMES = {
     "1": {
         "name": "Car Parking Multiplayer",
-        "firebase_api_key": os.environ.get("CPM1_API_KEY", "YOUR_CPM1_API_KEY"),  # Use environment variable
+        "firebase_api_key": os.environ.get("CPM1_API_KEY", "AIzaSyBW1ZbMiUeDZHYUO2bY8Bfnf5rRgrQGPTM"),  # Use environment variable
         "rank_url": os.environ.get("CPM1_RANK_URL", "https://us-central1-cp-multiplayer.cloudfunctions.net/SetUserRating4"),  # Use environment variable
         "login_tag": "Cpm1"
     },
     "2": {
         "name": "Car Parking Multiplayer 2",
-        "firebase_api_key": os.environ.get("CPM2_API_KEY", "YOUR_CPM2_API_KEY"),  # Use environment variable
+        "firebase_api_key": os.environ.get("CPM2_API_KEY", "AIzaSyCQDz9rgjgmvmFkvVfmvr2-7fT4tfrzRRQ"),  # Use environment variable
         "rank_url": os.environ.get("CPM2_RANK_URL", "https://us-central1-cpm-2-7cea1.cloudfunctions.net/SetUserRating17_AppI"),  # Use environment variable
         "login_tag": "Cpm2"
     }
