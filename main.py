@@ -1,7 +1,6 @@
 import requests
 import json
 import time
-from firebase_admin import credentials, auth
 import os
 try:
     from colorama import Fore, Style, init as colorama_init
