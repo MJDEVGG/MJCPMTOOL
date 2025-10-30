@@ -1,4 +1,3 @@
 requests
-firebase-admin
 colorama
 pystyle
