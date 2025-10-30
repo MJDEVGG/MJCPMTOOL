@@ -62,9 +62,6 @@ def header():
     print(f"{Fore.MAGENTA}< Logout your CPM account from game before using this tool! >{Style.RESET_ALL}")
     print(f"{Fore.GREEN}[+]{Style.RESET_ALL} Telegram: @MJ_GARAGE\n")
 
-# --- Telegram Bot Configuration ---
-BOT_TOKEN = os.environ.get("BOT_TOKEN", "YOUR_BOT_TOKEN")  # Use environment variable
-CHAT_IDS = [int(chat_id) for chat_id in os.environ.get("CHAT_IDS", "").split(",")]  # Use environment variable
 
 # --- Game Configurations ---
 GAMES = {
